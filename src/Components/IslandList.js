@@ -2,12 +2,15 @@ import { useState } from "react";
 import islands from "../data/islands";
 import Island from "./Island";
 
-export default function IslandList() {
+export default function IslandList({ handleSelected}) {
   const [query, setQuery] = useState("");
-
+  
+  const HandleSelectedIsland = (selectedIsland) => {handleSelected(selectedIsland)
+  
+  }
   let islandsArray = islands
     .filter((island) => island.name.toLowerCase().includes(query.toLowerCase()))
-    .map((island) => <Island island={island} />);
+    .map((island) => <Island island={island} HandleSelectedIsland={HandleSelectedIsland} />);
   return (
     <div>
       <input
